@@ -11,8 +11,10 @@
 
 <body>
     <header>
-        <h2>Genera tu CV</h2>
-        <input form="formCV" type="reset" id="resetForm" value="Restablecer formulario">
+        <h2>Genera tu CV
+            <pre>         y solicita trabajo</pre>
+        </h2>
+
         <div id="progresoDiv">
             <label for="formProgreso">Progreso: </label>
             <div id="progresoBar">
@@ -36,20 +38,21 @@
             <!-- TODO: make function to track % complete if fields are validated -->
             <legend>Datos personales</legend>
             <!-- TODO: make CV preview generate to side -->
-            <form id="formCV" action="./formularioCVExito.html" method="post">
+            <form id="formCV" action="./formularioCVExito.html" method="POST" spellcheck="false" autocapitalize="on"
+                target="_blank">
                 <!-- TODO: ? add tab index -->
                 <label for="correo">Correo electrónico:</label> <!-- TODO: check if email already used -->
                 <input type="email" id="correo" class="incompleto" name="correo" placeholder="ejemplo@correo.es"
                     autocomplete="email" required="required" title="correo electrónico valido"
-                    autofocus><!-- TODO: validate email -->
+                    autofocus tabindex="1"><!-- TODO: validate email -->
 
                 <!-- TODO:  make  v  into toggle slider-->
                 <div id="newUser">
                     <label>Crear nuevo usuario:</label>
                     <label for="nuevoUserSi">Sí:</label>
-                    <input type="radio" id="nuevoUserSi" class="radioBtn" name="newUser" value="si" required="required">
+                    <input type="radio" id="nuevoUserSi" class="radioBtn" name="newUser" value="si" required="required" tabindex="2">
                     <label for="nuevoUserNo">No:</label>
-                    <input type="radio" id="nuevoUserNo" class="radioBtn" name="newUser" value="no">
+                    <input type="radio" id="nuevoUserNo" class="radioBtn" name="newUser" value="no" tabindex="3">
                 </div>
                 <!-- <label for="fileCV">Subir CV existente para cargar tus datos automágicamente:</label>
                 <input type="file" id="fileCV" class="optional" name="fileCV" placeholder=" " optional="optional">
@@ -60,17 +63,19 @@
 
                 <label for="movil">Número de teléfono móvil:</label>
                 <input type="tel" id="movil" class="incompleto" name="movil" minlength="9" maxlength="12"
-                    autocomplete="tel" placeholder="+34" title="número de teléfono móvil valido español"
-                    pattern="\+346\d{8}|6\d{8}|\+347\d{8}|7\d{8}" required="required">
+                    autocomplete="tel" placeholder="+34"
+                    title="introduce un número de teléfono móvil correcto que empiece por 6 o 7"
+                    pattern="\+346\d{8}|6\d{8}|\+347\d{8}|7\d{8}" required="required" tabindex="4">
                 <!-- TODO: make progress bar border gradient based on number of digits inputed.. -->
                 <label for="ciudad">Ciudad:</label>
-                <input type="text" id="ciudad" name="ciudad" autocomplete="address-level2">
+                <input type="text" id="ciudad" name="ciudad" autocomplete="address-level2" spellcheck="true"
+                    autocapitalize="words" tabindex="5">
 
                 <div id="prefijos">
                     <label for="pronombres" placeholder=" ">Pronombre(s):</label>
                     <br>
                     <select id="pronombres" multiple="multiple" class="nombres optional multiSelect" name="pronombres"
-                        optional="optional">
+                        optional="optional" tabindex="6">
                         <!-- <option value="nada">-</option> -->
                         <option value="elle">Ella</option>
                         <option value="elle">Elle</option>
@@ -81,7 +86,7 @@
                     <label for="tratamiento" placeholder=" ">Tratamiento:</label>
                     <br>
                     <select id="tratamiento" multiple="multiple" class="nombres optional multiSelect" name="tratamiento"
-                        optional="optional">
+                        optional="optional" tabindex="7">
                         <!-- <option value="nada">-</option> -->
                         <option value="elle">Señora</option>
                         <option value="elle">Señorita</option>
@@ -99,30 +104,35 @@
                     <!-- <label for="apellido2" aria-placeholder="(opcional)">Segundo apellido (opcional):</label> -->
                     <br>
                     <input type="text" id="apellido1" class="nombres incompleto" name="apellido1" placeholder=" "
-                        autocomplete="family-name" required="required">
-                    <input type="text" id="apellido2" class="nombres optional" name="apellido2" optional="optional">
+                        autocomplete="family-name" required="required" autocapitalize="words" tabindex="8">
+                    <input type="text" id="apellido2" class="nombres optional" name="apellido2" optional="optional"
+                        autocapitalize="words" hidden="hidden" tabindex="9">
                     <br>
                     <label for="nombre1">Nombre(s):</label>
                     <label for="nombre2"></label> <!-- TODO: ? borrar estos labels vacios? -->
 
                     <br> <!-- TODO: validate names: make sure names longer than 2 characters -->
                     <input type="text" id="nombre1" class="nombres incompleto" name="nombre1" placeholder=" "
-                        autocomplete="given-name" required="required">
+                        autocomplete="given-name" required="required" autocapitalize="words" tabindex="10">
                     <input type="text" id="nombre2" class="nombres optional" name="nombre2"
-                        autocomplete="additional-name" optional="optional">
+                        autocomplete="additional-name" optional="optional" autocapitalize="words" hidden="hidden" tabindex="11">
                     <br>
-                    <label for="nombrePref">Nombre preferido:</label>
+                    <label for="nombrePref">Apodo:</label>
                     <!-- TODO: make preferred name update automagically to first name ^ onchange -->
                     <input type="text" id="nombrePref" class="nombres optional" name="nombrePref"
-                        autocomplete="nickname" optional="optional">
+                        autocomplete="nickname" optional="optional" autocapitalize="words" tabindex="12">
                 </div>
+
                 <label for="pais">País o región (derecho de trabajar):</label>
-                <select id="pais" class="dropDown incompleto" name="pais" required="required">
-                    <option value="es">España - ciudadano o residente</option>
-                    <option value="ue">Residente de la Unión Europea</option>
-                    <option value="otro">Vivo fuera de la UE pero tengo visado de trabajo</option>
-                    <option value="otro">Vivo fuera de la UE y necesito visado</option>
-                </select>
+                <div class="otherInput">
+                    <select id="pais" class="dropDown incompleto" name="pais" required="required" tabindex="13">
+                        <option value="" selected>~ selecciona ~</option>
+                        <option value="es">España - ciudadano o residente</option>
+                        <option value="ue">Residente de la Unión Europea</option>
+                        <option value="otro">Vivo fuera de la UE pero tengo visado de trabajo</option>
+                        <option value="otro">Vivo fuera de la UE y necesito visado</option>
+                    </select>
+                </div>
 
                 <div id="estadoCivilDiv" class="incompleto">
                     <label>Estado Civil:</label>
@@ -132,57 +142,67 @@
                     <label for="libre">Divorciado</label>
                     <br>
                     <input type="radio" id="solo" class="radioBtn" name="estadoCivil" value="soltero"
-                        required="required">
+                        required="required" tabindex="14">
                     <input type="radio" id="casado" class="radioBtn" name="estadoCivil" value="nosoltero">
                     <input type="radio" id="libre" class="radioBtn" name="estadoCivil" value="libre">
                 </div>
 
+                <!-- <div class="otherInput"> -->
+                    <label for="disponibilidad">Disponible desde:</label>
+                    <input type="date" id="dispon" class="incompleto" name="disponibilidad" required="required">
+                <!-- </div> -->
                 <!-- TODO: make pregreso bar works only once value changed ? -->
-                <label for="disponibilidad">Disponibilidad:</label>
-                <select id="dispon" class="dropDown incompleto" name="disponibilidad" required="required">
-                    <option value="3">Dentro de un mes</option>
-                    <option value="1">Dentro de una semana</option>
-                    <option value="2">Dentro de dos semanas</option>
-                    <option value="4">Dentro de tres meses</option>
-                </select>
-                <!-- TODO: make pregreso bar works only once value changed ? -->
-                <label for="tipoTrabajo">Estilo de trabajo preferido:</label>
-                <select multiple="multiple" id="tipoTrabajo" class="multiSelect incompleto" name="tipoTrabajo"
-                    required="required">
-                    <option value="1">Presencial</option>
-                    <option value="2">Remoto</option>
-                    <option value="3">Híbrido</option>
-                </select>
+                <label for="">Estilo(s) de trabajo preferido(s):</label>
+                <div id="tipoTrabajo" class="otherInput">
+                    <label for="tipoTrabajo1">Presencial</label>
+                    <input type="checkbox" id="tipoTrabajo1" class="incompleto" name="tipoTrabajo">
+                     <label for="tipoTrabajo2">Remoto</label>
+                    <input type="checkbox" id="tipoTrabajo2" class="incompleto" name="tipoTrabajo">
+                     <label for="tipoTrabajo3">Híbrido</label>
+                    <input type="checkbox" id="tipoTrabajo3" class="incompleto" name="tipoTrabajo">
+                </div>
+
+                <div>
+                    <label>Último salario:</label>
+                    <input type="number" id="salario" min="1" max="1000000" required="required"
+                        placeholder="10000">&nbsp&euro;
+                </div>
+
                 <label for="jornada">Jornada preferido:</label>
-                <!-- TODO -->
-                (Selecionar varios con Ctrl + Click)
-                <select multiple="multiple" id="jornada" class="multiSelect incompleto" name="jornada"
-                    required="required">
-                    <option value="1">Jornada completa</option>
-                    <option value="2">Jornada de cuatro días</option>
-                    <option value="3">Jornada parcial</option>
-                    <option value="4">Mañanas</option>
-                    <option value="4">Tardes</option>
-                    <option value="4">Noches</option>
-                </select>
+                <div class="otherInput">
+                    <!-- TODO -->
+                    (Selecionar varios con Ctrl + Click)
+                    <select multiple="multiple" id="jornada" class="multiSelect incompleto" name="jornada"
+                        required="required">
+                        <option value="1">Jornada completa</option>
+                        <option value="2">Jornada de cuatro días</option>
+                        <option value="3">Jornada parcial</option>
+                        <option value="4">Mañanas</option>
+                        <option value="4">Tardes</option>
+                        <option value="4">Noches</option>
+                    </select>
+                </div>
                 <!-- TODO: when adjusting width, don't adjust other inputs -->
                 <label for="sobreTi">Información adicional sobre ti:</label>
                 <textarea type="textarea" id="sobreTi" name="sobreTi" rows="5" columns="65" maxlength="210"
-                    optional="optional"></textarea>
+                    optional="optional" spellcheck="true" autocapitalize="sentences"></textarea>
 
                 <label for="motivo">Motivo para solicitar el trabajo:</label>
                 <textarea type="textarea" id="motivo" name="motivo" rows="3" columns="65" maxlength="120"
-                    optional="optional"></textarea>
+                    optional="optional" spellcheck="true" autocapitalize="sentences"></textarea>
 
                 <label for="experiencia">Experiencia laboral:</label>
-                <input type="text" class="add" id="experiencia" name="experiencia" optional="optional">
+                <input type="text" class="add" id="experiencia" name="experiencia" optional="optional" spellcheck="true"
+                    autocapitalize="sentences">
                 <!-- TODO: ? remove class="add" -->
+                <!-- TODO: add years of experience -->
 
                 <label for="educacion">Título:</label>
-                <input type="text" class="add" id="educacion" name="educacion" optional="optional">
+                <input type="text" class="add" id="educacion" name="educacion" optional="optional" spellcheck="true"
+                    autocapitalize="words">
                 <!-- TODO: ? remove class="add" -->
                 <label for="dateGrad">Fecha de obtener título:</label>
-                <input type="date" id="dateGrad" name="dateGrad" required>
+                <input type="date" class="incompleto" id="dateGrad" name="dateGrad" required="required">
 
                 <!--
         experiencia laboral,
@@ -198,14 +218,25 @@
                 <label for=""></label>
                 <input type="" id="" name=""> -->
 
+                <input form="formCV" type="reset" id="resetForm" value="Restablecer formulario">
             </form>
         </fieldset>
     </div>
     <!-- TODO: indicate that there are incomplete required="required" fields & highlight them red-->
     <!-- TODO: add "I'm a human" verification -->
     <!-- <input type="submit" value="Enviar" id="submitButton"> -->
-    <input form="formCV" id="submitButton" type="submit" value="Enviar">
 
+    <input form="formCV" id="submitButton" type="submit" value="Enviar">
+    <footer>
+        <address>
+            <span id="crYear">&copy;</span>
+            David D
+            <span><a href="https://github.com/dduirs">GitHub</a></span>
+        </address>
+        <div id="toTop">
+            <a href="#">Ir al principio ^</a>
+        </div>
+    </footer>
 </body>
 
 </html>
