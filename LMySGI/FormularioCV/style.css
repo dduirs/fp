@@ -316,6 +316,8 @@ select:required:has(input:invalid),
     background: rgb(255, 255, 255);
     /* border-color: rgb(255, 166, 0); */
     border: orange solid 2px;
+    position: relative;
+    bottom: 48px;
 }
 
 /* 
@@ -483,9 +485,70 @@ input {
     text-align: center;
 }
 
-#nombresDiv {
+#nombresDiv,
+#tipoTrabajo,
+#estadoCivilDiv,
+#newUser {
     margin-bottom: 8px;
 }
+
+#estadoCivilDiv,
+#newUser {
+    display: flex;
+    flex-direction: row;
+}
+
+#estadoCivilDiv>div,
+#newUser>div {
+    display: flex;
+    flex-direction: row;
+}
+
+#estadoCivilDiv>label,
+#newUser>label {
+    margin-left: 8px;
+}
+
+#solo,
+#casado,
+#libre {
+    position: relative;
+    left: -35px;
+    top: 12px;
+}
+
+#casado {
+    left: -85px;
+}
+
+#selectTip {
+    font-size: small;
+    font-weight: 300;
+    color: rgb(67, 67, 67);
+}
+
+#estadoCivilDiv {
+    padding-top: 5px;
+    height: 55px;
+    margin-bottom: 20px;
+}
+
+#tipoTrabajo1,
+#tipoTrabajo2,
+#tipoTrabajo3 {
+    position: relative;
+    left: -45px;
+    top: 30px;
+}
+
+
+/* #estadoCivilDiv .radioBtn {
+    position: relative;
+} */
+/* 
+#solo{
+    left: 10%;
+} */
 
 #tipoTrabajo {
     height: 4rem;
