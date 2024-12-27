@@ -5,55 +5,65 @@ public class Temperaturas {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String exit = String.valueOf('y');
+        String exit;
+        String inicial = "";
+        double input = 0.00;
         do {
-            System.out.println("Escribe la temperatura en K, ºC o ºF que quieres convertir (k, c o f): ");
-            String inicial = in.next();
-            double input = Double.parseDouble(inicial.split("[kcf]")[0]);
-            if ((inicial.contains("c")) || (inicial.contains("C"))) {
-                System.out.println(input + " Celsius ");
-                System.out.printf("equals %.2f F", convert(input, 'c', 'f'));
-                System.out.printf("equals %.2f K", convert(input, 'c', 'k'));
-                System.out.println();
+        boolean inputValid = false;
+            while(!inputValid) {
+                try {
+                    System.out.println("Escribe la temperatura que quieres convertir en Kelvin (K), C o F: ");
+                    inicial = in.nextLine();
+                    input = Double.parseDouble(inicial.split("[kcfKCF]")[0]);
+                    inputValid = true;
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException _) {
+                    System.out.println("~ ~ El formato no es correcto. ~ ~ \n");
+                }
             }
             if ((inicial.contains("k")) || (inicial.contains("K"))) {
-                System.out.println(input + " Kelvin ");
-                System.out.printf("equals %.2f F", convert(input, 'k', 'f'));
-                System.out.printf("equals %.2f C", convert(input, 'k', 'c'));
-                System.out.println();
+                System.out.printf(" Grados Kelvin: ** %.2f ** %n", input);
+                input = convert(input, 'k');
+                System.out.printf(" Centigrados: %.2f   ", input);
+                input = convert(input, 'c');
+                System.out.printf(" Farenheit: %.2f %n", input);
             }
-            if ((inicial.contains("f")) || (inicial.contains("F"))) {
-                System.out.println("Fahrenheit to..");
+            else if ((inicial.contains("c")) || (inicial.contains("C"))) {
+                System.out.printf(" Grados Centigrados: ** %.2f ** %n", input);
+                input = convert(input, 'c');
+                System.out.printf(" Farenheit: %.2f   ", input);
+                input = convert(input, 'f');
+                System.out.printf("Kelvin: %.2f %n", input);
             }
-            System.out.println("¿Qúieres continuar? (´y´ o ´n´): ");
-            exit = in.next();
-        }while(!Objects.equals(exit, String.valueOf('n')));
+            else if ((inicial.contains("f")) || (inicial.contains("F"))) {
+                System.out.printf(" Grados Farenheit: ** %.2f ** %n", input);
+                input = convert(input, 'f');
+                System.out.printf(" Kelvin: %.2f   ", input);
+                input = convert(input, 'k');
+                System.out.printf("Centigrados: %.2f %n", input);
+            }
+            else System.out.println("~ ~ No has escrito la unidad. ~ ~");
+            System.out.print("  ¿Qúieres continuar? (´y´ o ´n´): ");
+            exit = in.nextLine();
+            System.out.println();
+        } while (!Objects.equals(exit, String.valueOf('n')));
     }
 
-    private static double convert(double valor, char in, char out){
-//        double result;
-        if(in == 'c' && out == 'k'){
-            if ((valor + 273.15) == -0.00) {
-                return Math.abs(valor + 273.15);
-            }else return (valor + 273.15);
+    private static double convert(double valor, char tipoIn){
+        if(tipoIn == 'k'){
+            double c;
+            c = valor - 273.15;
+            return (c);
         }
-        else if(in == 'k' && out == 'c'){
-            if ((valor - 273.15) == -0.00) {
-                return Math.abs(valor - 273.15);
-            }else return (valor - 273.15);
+        else if(tipoIn == 'c'){
+            double f;
+            f = ((valor*((double)9/5))+32);
+            return (f);
         }
-        else if(in == 'c' && out == 'f'){
-            return (((valor*9)/5)+32);
+        else{
+            return ((valor-32)*((double)5/9) + 273.15);
         }
-        else return 999;
     }
 }
 //*ENTRADA/SALIDA*
 //Grados centigrados: **15,70**
 //Farenheit: 60,26 Kelvin: 288,85
-
-//Grados Farenheit: **45,32**
-//Centigrados: 7,4 Kelvin: 280,55
-
-//Grados Kelvin: **345,23**
-//Centigrados: 72,08 Farenheit: 161,74
