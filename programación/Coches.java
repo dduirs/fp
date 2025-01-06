@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Coches {
@@ -105,7 +104,7 @@ public class Coches {
             String[] c;
             c = (String[]) coches.get(i);
             if (identifier != null){
-                if (Objects.equals(c[posicion], identifier)) {
+                if ((c[posicion].equalsIgnoreCase(identifier))) {
                     count++;
                     if(printVerbose && (count==1)) {
                         System.out.printf("%n    Resultado de la búsqueda: %n%n");
@@ -113,7 +112,7 @@ public class Coches {
                     System.out.print(i+1+")  ");
                     for (int j = 0; j < 4; j++) {
                         System.out.print(etiquetas[j]);
-                        if (Objects.equals(c[j], identifier)) {
+                        if (c[j].equalsIgnoreCase(identifier)) {
                             System.out.print("\033[0;32m" + c[j] + "  " + "\033[0m");
                         }
                         else{
