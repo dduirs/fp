@@ -1,7 +1,7 @@
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Temperaturas {
+public class Temperatura {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
