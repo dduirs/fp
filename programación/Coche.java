@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Coches {
+public class Coche {
 
     static ArrayList coches = new ArrayList();
     static Scanner in = new Scanner(System.in);
