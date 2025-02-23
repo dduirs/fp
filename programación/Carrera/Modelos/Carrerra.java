@@ -27,33 +27,29 @@ public class Carrera {
         System.out.println("3...");
         System.out.println("    2...");
         System.out.println("        1...");
-        System.out.println("            ¡Empezar!");
+        System.out.println("            ¡Vamos!");
         return laCarrera(participante1, participante2);
     }
 
     public Coche laCarrera(Coche participante1, Coche participante2){
         for (int i = 0; i < this.vueltas; i++) {
             int random = (int)(Math.random()*100);
-            System.out.println(" ##### random en la Carrera = " + random);
-            System.out.printf("Vuelta %d of %d: %n",i,vueltas);
+            System.out.printf("Vuelta %d de %d: %n",i,vueltas);
+            System.out.println("    Participante 1: " + participante1.getMatricula());
             participante1.acelerar(random);
-            System.out.printf("\033[0;33m        velocidad participante1 = %d km/h  \033[0m (de %d)  %n", participante1.getVelocidad(), participante1.getVelocidadMaxima());
-            participante1.acelerar(-random);
-            System.out.printf("\033[0;33m        velocidad participante1 = %d km/h  \033[0m %n", participante1.getVelocidad());
+            System.out.printf("\033[0;33m        Velocidad participante 1 = %d km/h  \033[0m (de %d)  %n", participante1.getVelocidad(), participante1.getVelocidadMaxima());
+            System.out.println("\n    Participante 2: " + participante2.getMatricula());
             participante2.acelerar(random);
-            System.out.printf("\033[0;34m        velocidad participante2 = %d km/h  \033[0m (de %d) %n", participante2.getVelocidad(), participante2.getVelocidadMaxima());
-            participante2.acelerar(-random);
-            System.out.printf("\033[0;34m        velocidad participante2 = %d km/h  \033[0m %n", participante2.getVelocidad());
+            System.out.printf("\033[0;34m        Velocidad participante 2 = %d km/h  \033[0m (de %d) %n", participante2.getVelocidad(), participante2.getVelocidadMaxima());
+
             carreraVisual(participante1, participante2, kmTotales);
         }
-//        carreraVisual(participante1, participante2);
         if (participante1.getKms() > participante2.getKms()) return participante1;
         else return participante2;
     }
 
     public void carreraVisual(Coche participante1, Coche participante2, int kmTotales){
-        int denominador;
-        denominador = 10;
+
         for (int i = 0; i < 100; i+= 5) {
             System.out.print("-- ");
         }
@@ -62,13 +58,13 @@ public class Carrera {
         for (int i = 10; i < participante1.getKms(); i+=(kmTotales/10)) {
             System.out.print("  ");
         }
-        System.out.print("\uD83D\uDE98");
+        System.out.print("\uD83D\uDE99");
         System.out.println();
         System.out.print(" P2 >> ");
         for (int i = 10; i < participante2.getKms(); i+=(kmTotales/10)) {
             System.out.print("  ");
         }
-        System.out.print("\uD83D\uDE93");
+        System.out.print("\uD83C\uDFCE\uFE0F");
         System.out.println();
         for (int i = 0; i < 100; i+= 5) {
             System.out.print("-- ");
